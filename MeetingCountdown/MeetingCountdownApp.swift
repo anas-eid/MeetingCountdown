@@ -28,6 +28,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     private var preferencesWindow: NSWindow?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // Unit tests run inside the app; skip the menu bar item and prompts there.
+        guard ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil else { return }
+
         if settings.notificationsEnabled {
             MeetingEngine.requestNotificationAuthorization()
         }
@@ -47,7 +50,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         if preferencesWindow == nil {
             let host = NSHostingController(rootView: PreferencesView(settings: settings, calendar: calendar))
             let window = NSWindow(contentViewController: host)
-            window.title = "Meeting Countdown Settings"
+            window.title = "Harri NextUp Settings"
             window.styleMask = [.titled, .closable]
             window.isReleasedWhenClosed = false
             window.delegate = self

@@ -8,7 +8,21 @@ enum Phase {
     case running(TimeInterval)    // seconds until it ends
 }
 
-enum Tone { case plain, amber, red, green }
+/// How the countdown is coloured. See Brand.swift for the actual colours.
+///  plain    more than `soonMinutes` away
+///  soon     within `soonMinutes` of starting (blue)
+///  urgent   within `urgentMinutes` of starting, or the last 5 min of a running meeting (orange)
+///  progress a running meeting (green)
+enum Tone { case plain, soon, urgent, progress }
+
+/// The settings `makeDisplay` depends on, so it can run without `AppSettings`.
+struct DisplayRules {
+    /// 0 means off.
+    var soonMinutes: Int
+    /// 0 means off.
+    var urgentMinutes: Int
+    var format: CountdownFormat
+}
 
 /// Everything the menu bar label and dropdown header need.
 struct Display {
@@ -109,8 +123,13 @@ final class MeetingEngine: ObservableObject {
         visibleMeetings = today
         nextDayMeeting = live.first { $0.start >= endOfToday }
 
-        if calendar.access == .granted, let chosen = pick(from: today) {
-            let display = makeDisplay(chosen, in: today)
+        if calendar.access == .granted, let chosen = Self.pick(from: today, at: now) {
+            let rules = DisplayRules(
+                soonMinutes: settings.soonMinutes,
+                urgentMinutes: settings.urgentMinutes,
+                format: settings.countdownFormat
+            )
+            let display = Self.makeDisplay(chosen, in: today, at: now, rules: rules)
             current = display
             conflictGroup = today.filter { $0.overlaps(chosen) }
         } else {
@@ -141,23 +160,35 @@ final class MeetingEngine: ObservableObject {
 
     // MARK: - Choosing the meeting
 
-    private func pick(from list: [Meeting]) -> Meeting? {
+    /// Pure, so tests can call it with fake meetings. `list` must be sorted by start.
+    /// `takeOverOnlyWhenOverlapping` defaults to the static setting of the same name.
+    static func pick(
+        from list: [Meeting],
+        at now: Date,
+        takeOverOnlyWhenOverlapping: Bool? = nil
+    ) -> Meeting? {
+        let onlyWhenOverlapping = takeOverOnlyWhenOverlapping ?? Self.takeOverOnlyWhenOverlapping
         let running = list.filter { $0.isRunning(at: now) }
         let upcoming = list.filter { $0.start > now }
 
         guard let firstRunning = running.first else { return upcoming.first }
 
-        if let next = upcoming.first, next.start.timeIntervalSince(now) <= Self.headsUp {
+        if let next = upcoming.first, next.start.timeIntervalSince(now) <= headsUp {
             let overlapsRunning = running.contains { next.start < $0.end }
-            if overlapsRunning || !Self.takeOverOnlyWhenOverlapping {
+            if overlapsRunning || !onlyWhenOverlapping {
                 return next
             }
         }
         return firstRunning
     }
 
-    private func makeDisplay(_ meeting: Meeting, in list: [Meeting]) -> Display {
-        let mode = settings.countdownFormat
+    static func makeDisplay(
+        _ meeting: Meeting,
+        in list: [Meeting],
+        at now: Date,
+        rules: DisplayRules
+    ) -> Display {
+        let mode = rules.format
         let phase: Phase
         let seconds: TimeInterval
         var isRunning = false
@@ -174,18 +205,18 @@ final class MeetingEngine: ObservableObject {
         let tone: Tone
         switch phase {
         case .upcoming(let s):
-            if settings.redMinutes > 0 && s <= Double(settings.redMinutes) * 60 {
-                tone = .red
-            } else if settings.amberMinutes > 0 && s <= Double(settings.amberMinutes) * 60 {
-                tone = .amber
+            if rules.urgentMinutes > 0 && s <= Double(rules.urgentMinutes) * 60 {
+                tone = .urgent
+            } else if rules.soonMinutes > 0 && s <= Double(rules.soonMinutes) * 60 {
+                tone = .soon
             } else {
                 tone = .plain
             }
         case .running(let left):
-            tone = left <= 5 * 60 ? .amber : .green
+            tone = left <= 5 * 60 ? .urgent : .progress
         }
 
-        let base = Self.format(seconds, mode: mode)
+        let base = format(seconds, mode: mode)
         let extra = list.filter { $0.id != meeting.id && $0.overlaps(meeting) }.count
 
         return Display(
@@ -194,7 +225,7 @@ final class MeetingEngine: ObservableObject {
             tone: tone,
             extraCount: extra,
             timeText: isRunning ? "\(base) left" : base,
-            showsSeconds: Self.usesClock(seconds, mode: mode)
+            showsSeconds: usesClock(seconds, mode: mode)
         )
     }
 

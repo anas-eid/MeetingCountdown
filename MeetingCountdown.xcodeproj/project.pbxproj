@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		38EDCF99308E55EB00239C89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38EDCF6C308E55E800239C89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38EDCF73308E55E800239C89;
+			remoteInfo = MeetingCountdown;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		38EDCF74308E55E800239C89 /* MeetingCountdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeetingCountdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		38EDCF74308E55E800239C89 /* Harri NextUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Harri NextUp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38EDCF91308E55EB00239C89 /* MeetingCountdownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeetingCountdownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +27,22 @@
 			path = MeetingCountdown;
 			sourceTree = "<group>";
 		};
+		38EDCF92308E55EB00239C89 /* MeetingCountdownTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MeetingCountdownTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		38EDCF71308E55E800239C89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38EDCF94308E55EB00239C89 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				38EDCF76308E55E800239C89 /* MeetingCountdown */,
+				38EDCF92308E55EB00239C89 /* MeetingCountdownTests */,
 				38EDCF75308E55E800239C89 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -40,7 +64,8 @@
 		38EDCF75308E55E800239C89 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				38EDCF74308E55E800239C89 /* MeetingCountdown.app */,
+				38EDCF74308E55E800239C89 /* Harri NextUp.app */,
+				38EDCF91308E55EB00239C89 /* MeetingCountdownTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,8 +92,31 @@
 			packageProductDependencies = (
 			);
 			productName = MeetingCountdown;
-			productReference = 38EDCF74308E55E800239C89 /* MeetingCountdown.app */;
+			productReference = 38EDCF74308E55E800239C89 /* Harri NextUp.app */;
 			productType = "com.apple.product-type.application";
+		};
+		38EDCF90308E55EB00239C89 /* MeetingCountdownTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38EDCF96308E55EB00239C89 /* Build configuration list for PBXNativeTarget "MeetingCountdownTests" */;
+			buildPhases = (
+				38EDCF93308E55EB00239C89 /* Sources */,
+				38EDCF94308E55EB00239C89 /* Frameworks */,
+				38EDCF95308E55EB00239C89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				38EDCF9A308E55EB00239C89 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				38EDCF92308E55EB00239C89 /* MeetingCountdownTests */,
+			);
+			name = MeetingCountdownTests;
+			packageProductDependencies = (
+			);
+			productName = MeetingCountdownTests;
+			productReference = 38EDCF91308E55EB00239C89 /* MeetingCountdownTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -83,6 +131,10 @@
 					38EDCF73308E55E800239C89 = {
 						CreatedOnToolsVersion = 26.3;
 						LastSwiftMigration = 2630;
+					};
+					38EDCF90308E55EB00239C89 = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = 38EDCF73308E55E800239C89;
 					};
 				};
 			};
@@ -101,12 +153,20 @@
 			projectRoot = "";
 			targets = (
 				38EDCF73308E55E800239C89 /* MeetingCountdown */,
+				38EDCF90308E55EB00239C89 /* MeetingCountdownTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		38EDCF72308E55E800239C89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38EDCF95308E55EB00239C89 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -123,7 +183,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		38EDCF93308E55EB00239C89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		38EDCF9A308E55EB00239C89 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38EDCF73308E55E800239C89 /* MeetingCountdown */;
+			targetProxy = 38EDCF99308E55EB00239C89 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		38EDCF7D308E55EB00239C89 /* Debug */ = {
@@ -256,6 +331,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4G5H23XV46;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
@@ -269,6 +345,7 @@
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Harri NextUp";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Shows your next meeting in the menu bar.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 AnAs (anas.eid@harri.com)";
@@ -278,8 +355,9 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = harri.MeetingCountdown;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.harri.nextup;
+				PRODUCT_MODULE_NAME = MeetingCountdown;
+				PRODUCT_NAME = "Harri NextUp";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -304,6 +382,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4G5H23XV46;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
@@ -317,6 +396,7 @@
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Harri NextUp";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSCalendarsFullAccessUsageDescription = "Shows your next meeting in the menu bar.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2026 AnAs (anas.eid@harri.com)";
@@ -326,8 +406,9 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = harri.MeetingCountdown;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.harri.nextup;
+				PRODUCT_MODULE_NAME = MeetingCountdown;
+				PRODUCT_NAME = "Harri NextUp";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -336,6 +417,51 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "MeetingCountdown/MeetingCountdown-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		38EDCF97308E55EB00239C89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4G5H23XV46;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harri.nextup.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Harri NextUp.app/Contents/MacOS/Harri NextUp";
+			};
+			name = Debug;
+		};
+		38EDCF98308E55EB00239C89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4G5H23XV46;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.harri.nextup.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Harri NextUp.app/Contents/MacOS/Harri NextUp";
 			};
 			name = Release;
 		};
@@ -356,6 +482,15 @@
 			buildConfigurations = (
 				38EDCF80308E55EB00239C89 /* Debug */,
 				38EDCF81308E55EB00239C89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		38EDCF96308E55EB00239C89 /* Build configuration list for PBXNativeTarget "MeetingCountdownTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38EDCF97308E55EB00239C89 /* Debug */,
+				38EDCF98308E55EB00239C89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
