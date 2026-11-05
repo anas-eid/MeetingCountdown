@@ -35,13 +35,23 @@ struct PreferencesView: View {
             }
 
             Section("Alerts") {
-                Picker("Turn amber at", selection: $settings.amberMinutes) {
+                Picker(selection: $settings.soonMinutes) {
                     Text("Off").tag(0)
                     ForEach([5, 10, 15], id: \.self) { Text("\($0) minutes").tag($0) }
+                } label: {
+                    HStack(spacing: 8) {
+                        Circle().fill(Brand.primary).frame(width: 10, height: 10)
+                        Text("Turn blue at")
+                    }
                 }
-                Picker("Turn red at", selection: $settings.redMinutes) {
+                Picker(selection: $settings.urgentMinutes) {
                     Text("Off").tag(0)
                     ForEach([1, 2, 5], id: \.self) { Text("\($0) minutes").tag($0) }
+                } label: {
+                    HStack(spacing: 8) {
+                        Circle().fill(Brand.tertiary).frame(width: 10, height: 10)
+                        Text("Turn orange at")
+                    }
                 }
                 Toggle("Send a notification", isOn: $settings.notificationsEnabled)
                 Picker("Notify", selection: $settings.notifyMinutes) {
@@ -73,6 +83,7 @@ struct PreferencesView: View {
         }
         .formStyle(.grouped)
         .frame(width: 520, height: 640)
+        .tint(Brand.primary)
         .onAppear {
             launchAtLogin = SMAppService.mainApp.status == .enabled
             calendar.refresh()

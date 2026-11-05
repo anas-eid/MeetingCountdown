@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "38EDCF73308E55E800239C89"
-               BuildableName = "MeetingCountdown.app"
+               BuildableName = "Harri NextUp.app"
                BlueprintName = "MeetingCountdown"
                ReferencedContainer = "container:MeetingCountdown.xcodeproj">
             </BuildableReference>
@@ -29,6 +29,19 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "38EDCF90308E55EB00239C89"
+               BuildableName = "MeetingCountdownTests.xctest"
+               BlueprintName = "MeetingCountdownTests"
+               ReferencedContainer = "container:MeetingCountdown.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Release"
@@ -45,7 +58,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "38EDCF73308E55E800239C89"
-            BuildableName = "MeetingCountdown.app"
+            BuildableName = "Harri NextUp.app"
             BlueprintName = "MeetingCountdown"
             ReferencedContainer = "container:MeetingCountdown.xcodeproj">
          </BuildableReference>
@@ -62,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "38EDCF73308E55E800239C89"
-            BuildableName = "MeetingCountdown.app"
+            BuildableName = "Harri NextUp.app"
             BlueprintName = "MeetingCountdown"
             ReferencedContainer = "container:MeetingCountdown.xcodeproj">
          </BuildableReference>

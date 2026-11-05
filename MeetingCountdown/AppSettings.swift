@@ -19,8 +19,8 @@ enum CountdownFormat: String, CaseIterable, Identifiable {
 private enum SettingsKey {
     static let showTitle = "showTitle"
     static let maxTitleLength = "maxTitleLength"
-    static let amberMinutes = "amberMinutes"
-    static let redMinutes = "redMinutes"
+    static let soonMinutes = "soonMinutes"
+    static let urgentMinutes = "urgentMinutes"
     static let notificationsEnabled = "notificationsEnabled"
     static let notifyMinutes = "notifyMinutes"
     static let hideDeclined = "hideDeclined"
@@ -41,12 +41,12 @@ final class AppSettings: ObservableObject {
         didSet { defaults.set(maxTitleLength, forKey: SettingsKey.maxTitleLength) }
     }
     /// 0 means off.
-    @Published var amberMinutes: Int {
-        didSet { defaults.set(amberMinutes, forKey: SettingsKey.amberMinutes) }
+    @Published var soonMinutes: Int {
+        didSet { defaults.set(soonMinutes, forKey: SettingsKey.soonMinutes) }
     }
     /// 0 means off.
-    @Published var redMinutes: Int {
-        didSet { defaults.set(redMinutes, forKey: SettingsKey.redMinutes) }
+    @Published var urgentMinutes: Int {
+        didSet { defaults.set(urgentMinutes, forKey: SettingsKey.urgentMinutes) }
     }
     @Published var notificationsEnabled: Bool {
         didSet { defaults.set(notificationsEnabled, forKey: SettingsKey.notificationsEnabled) }
@@ -76,8 +76,8 @@ final class AppSettings: ObservableObject {
         let d = UserDefaults.standard
         showTitle = d.object(forKey: SettingsKey.showTitle) as? Bool ?? true
         maxTitleLength = d.object(forKey: SettingsKey.maxTitleLength) as? Int ?? 18
-        amberMinutes = d.object(forKey: SettingsKey.amberMinutes) as? Int ?? 10
-        redMinutes = d.object(forKey: SettingsKey.redMinutes) as? Int ?? 2
+        soonMinutes = d.object(forKey: SettingsKey.soonMinutes) as? Int ?? 10
+        urgentMinutes = d.object(forKey: SettingsKey.urgentMinutes) as? Int ?? 2
         notificationsEnabled = d.object(forKey: SettingsKey.notificationsEnabled) as? Bool ?? true
         notifyMinutes = d.object(forKey: SettingsKey.notifyMinutes) as? Int ?? 1
         hideDeclined = d.object(forKey: SettingsKey.hideDeclined) as? Bool ?? true

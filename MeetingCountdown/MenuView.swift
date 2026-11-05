@@ -23,19 +23,20 @@ struct MenuView: View {
                     calendar.refresh()
                     engine.tick()
                 }
-                MenuRow(title: "About Meeting Countdown") {
+                MenuRow(title: "About Harri NextUp") {
                     openAbout()
                 }
                 MenuRow(title: "Preferences…", shortcut: "⌘,", key: ",") {
                     openPreferences()
                 }
-                MenuRow(title: "Quit Meeting Countdown", shortcut: "⌘Q", key: "q") {
+                MenuRow(title: "Quit Harri NextUp", shortcut: "⌘Q", key: "q") {
                     NSApplication.shared.terminate(nil)
                 }
             }
         }
         .padding(16)
         .frame(width: 360)
+        .tint(Brand.primary)
         .onAppear {
             calendar.refresh()
             engine.tick()
@@ -94,7 +95,7 @@ struct MenuView: View {
             Text("Conflict · \(engine.conflictGroup.count) meetings overlap")
                 .font(.caption.weight(.semibold))
                 .textCase(.uppercase)
-                .foregroundStyle(.orange)
+                .foregroundStyle(Brand.urgentText)
 
             ForEach(engine.conflictGroup) { meeting in
                 HStack(spacing: 8) {
@@ -109,7 +110,7 @@ struct MenuView: View {
             }
         }
         .padding(10)
-        .background(RoundedRectangle(cornerRadius: 8).fill(Color.orange.opacity(0.12)))
+        .background(RoundedRectangle(cornerRadius: 8).fill(Brand.tertiary.opacity(0.12)))
     }
 
     private func todayList(_ display: Display) -> some View {
@@ -138,7 +139,7 @@ struct MenuView: View {
                 .padding(.horizontal, 6)
                 .background(
                     RoundedRectangle(cornerRadius: 6)
-                        .fill(meeting.id == display.meeting.id ? Color.primary.opacity(0.08) : Color.clear)
+                        .fill(meeting.id == display.meeting.id ? Brand.selectedRow : Color.clear)
                 )
             }
 
@@ -193,6 +194,7 @@ struct MenuView: View {
         if let link = meeting.joinLink {
             Button("Join") { NSWorkspace.shared.open(link.url) }
                 .buttonStyle(.link)
+                .tint(Brand.linkText)
         }
     }
 
@@ -218,9 +220,9 @@ struct MenuView: View {
     private func toneColor(_ tone: Tone) -> Color {
         switch tone {
         case .plain: return .secondary
-        case .amber: return .orange
-        case .red: return .red
-        case .green: return .green
+        case .soon: return Brand.linkText
+        case .urgent: return Brand.urgentText
+        case .progress: return Brand.progressText
         }
     }
 }

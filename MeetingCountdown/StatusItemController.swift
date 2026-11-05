@@ -96,7 +96,7 @@ final class StatusItemController: NSObject {
     }
 
     private func showIcon(_ symbol: String, on button: NSStatusBarButton) {
-        let image = NSImage(systemSymbolName: symbol, accessibilityDescription: "Meeting Countdown")
+        let image = NSImage(systemSymbolName: symbol, accessibilityDescription: "Harri NextUp")
         image?.isTemplate = true
         button.image = image
         button.title = ""
@@ -121,7 +121,7 @@ final class StatusItemController: NSObject {
         let isDark = button.effectiveAppearance.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua
 
         var attributes: [NSAttributedString.Key: Any] = [:]
-        if let color = Self.color(for: display.tone, onDarkBar: isDark) {
+        if let color = Brand.menuBarText(for: display.tone, onDarkBar: isDark) {
             attributes[.font] = NSFont.monospacedDigitSystemFont(ofSize: size, weight: .semibold)
             attributes[.foregroundColor] = color
         } else {
@@ -134,22 +134,5 @@ final class StatusItemController: NSObject {
         let limit = settings.maxTitleLength
         guard title.count > limit else { return title }
         return title.prefix(max(1, limit - 1)).trimmingCharacters(in: .whitespaces) + "…"
-    }
-
-    /// Dark shades for a light bar, bright ones for a dark bar.
-    private static func color(for tone: Tone, onDarkBar isDark: Bool) -> NSColor? {
-        switch tone {
-        case .plain: return nil
-        case .amber: return isDark ? rgb(0xFFB340) : rgb(0x8A4500)
-        case .red: return isDark ? rgb(0xFF6961) : rgb(0xB0161D)
-        case .green: return isDark ? rgb(0x32D74B) : rgb(0x0B6128)
-        }
-    }
-
-    private static func rgb(_ hex: UInt32) -> NSColor {
-        NSColor(srgbRed: CGFloat((hex >> 16) & 0xFF) / 255,
-                green: CGFloat((hex >> 8) & 0xFF) / 255,
-                blue: CGFloat(hex & 0xFF) / 255,
-                alpha: 1)
     }
 }
